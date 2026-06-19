@@ -8,26 +8,26 @@ def inject_css():
 
     /* ===== ROOT VARIABLES ===== */
     :root {
-        --bg-primary: #0a0d16;
-        --bg-secondary: #111827;
-        --bg-card: rgba(17, 24, 39, 0.8);
-        --bg-glass: rgba(99, 102, 241, 0.05);
-        --border-glass: rgba(99, 102, 241, 0.15);
-        --accent-indigo: #6366f1;
-        --accent-cyan: #22d3ee;
+        --bg-primary: #121212;
+        --bg-secondary: #1e1e1e;
+        --bg-card: #1e1e1e;
+        --bg-glass: rgba(255, 255, 255, 0.02);
+        --border-glass: #2e2e2e;
+        --accent-indigo: #3b82f6;
+        --accent-cyan: #06b6d4;
         --accent-amber: #f59e0b;
         --accent-green: #10b981;
         --accent-red: #ef4444;
-        --text-primary: #e2e8f0;
-        --text-secondary: #94a3b8;
-        --text-muted: #64748b;
-        --gradient-hero: linear-gradient(135deg, #6366f1 0%, #22d3ee 100%);
-        --gradient-card: linear-gradient(135deg, rgba(99,102,241,0.1) 0%, rgba(34,211,238,0.05) 100%);
-        --shadow-glow: 0 0 30px rgba(99, 102, 241, 0.15);
-        --shadow-card: 0 4px 24px rgba(0, 0, 0, 0.4);
-        --radius-lg: 16px;
-        --radius-md: 12px;
-        --radius-sm: 8px;
+        --text-primary: #f3f4f6;
+        --text-secondary: #9ca3af;
+        --text-muted: #6b7280;
+        --gradient-hero: #3b82f6;
+        --gradient-card: #1e1e1e;
+        --shadow-glow: none;
+        --shadow-card: 0 4px 12px rgba(0, 0, 0, 0.15);
+        --radius-lg: 8px;
+        --radius-md: 6px;
+        --radius-sm: 4px;
     }
 
     /* ===== GLOBAL RESET ===== */
@@ -40,9 +40,7 @@ def inject_css():
     }
 
     [data-testid="stAppViewContainer"] {
-        background: radial-gradient(ellipse at top left, rgba(99,102,241,0.08) 0%, transparent 50%),
-                    radial-gradient(ellipse at bottom right, rgba(34,211,238,0.05) 0%, transparent 50%),
-                    var(--bg-primary) !important;
+        background: var(--bg-primary) !important;
     }
 
     /* ===== HIDE STREAMLIT DEFAULTS ===== */
@@ -54,7 +52,6 @@ def inject_css():
     [data-testid="stSidebar"] {
         background: var(--bg-secondary) !important;
         border-right: 1px solid var(--border-glass) !important;
-        box-shadow: 4px 0 24px rgba(0,0,0,0.3);
     }
     [data-testid="stSidebar"] > div { padding-top: 1rem; }
 
@@ -68,29 +65,25 @@ def inject_css():
         margin-bottom: 20px;
     }
     .logicpilot-logo .logo-icon {
-        width: 38px;
-        height: 38px;
-        background: var(--gradient-hero);
-        border-radius: 10px;
+        width: 36px;
+        height: 36px;
+        background: var(--accent-indigo);
+        border-radius: var(--radius-sm);
         display: flex;
         align-items: center;
         justify-content: center;
-        font-size: 20px;
-        box-shadow: 0 0 16px rgba(99,102,241,0.5);
+        font-size: 18px;
     }
     .logicpilot-logo .logo-text {
-        font-size: 20px;
+        font-size: 18px;
         font-weight: 700;
-        background: var(--gradient-hero);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        color: var(--text-primary);
         letter-spacing: -0.5px;
     }
     .logicpilot-logo .logo-tagline {
-        font-size: 10px;
+        font-size: 9px;
         color: var(--text-muted);
-        font-weight: 400;
+        font-weight: 500;
         letter-spacing: 0.5px;
     }
 
@@ -99,10 +92,10 @@ def inject_css():
         display: flex;
         align-items: center;
         gap: 10px;
-        padding: 12px 14px;
+        padding: 10px 12px;
         border-radius: var(--radius-sm);
         cursor: pointer;
-        transition: all 0.2s ease;
+        transition: all 0.15s ease;
         margin-bottom: 4px;
         border: 1px solid transparent;
         font-size: 13px;
@@ -113,16 +106,15 @@ def inject_css():
         text-align: left;
     }
     .module-nav-btn:hover {
-        background: var(--bg-glass);
-        border-color: var(--border-glass);
+        background: rgba(255, 255, 255, 0.05);
         color: var(--text-primary);
     }
     .module-nav-btn.active {
-        background: linear-gradient(135deg, rgba(99,102,241,0.2), rgba(34,211,238,0.1));
+        background: rgba(59, 130, 246, 0.1);
         border-color: var(--accent-indigo);
         color: var(--accent-indigo);
-        box-shadow: 0 0 12px rgba(99,102,241,0.15);
     }
+
 
     /* ===== CARDS ===== */
     .glass-card {
@@ -157,10 +149,7 @@ def inject_css():
         font-size: 22px;
         font-weight: 700;
         margin: 0;
-        background: var(--gradient-hero);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        background-clip: text;
+        color: var(--accent-indigo);
     }
     .module-header p {
         font-size: 12px;
@@ -170,7 +159,7 @@ def inject_css():
 
     /* ===== AI RESPONSE CARDS ===== */
     .ai-response {
-        background: linear-gradient(135deg, rgba(99,102,241,0.08), rgba(34,211,238,0.04));
+        background: rgba(59, 130, 246, 0.04);
         border: 1px solid var(--border-glass);
         border-left: 3px solid var(--accent-indigo);
         border-radius: var(--radius-md);
@@ -193,9 +182,9 @@ def inject_css():
     }
 
     .user-message {
-        background: rgba(34,211,238,0.06);
-        border: 1px solid rgba(34,211,238,0.15);
-        border-left: 3px solid var(--accent-cyan);
+        background: rgba(255, 255, 255, 0.02);
+        border: 1px solid var(--border-glass);
+        border-left: 3px solid var(--text-muted);
         border-radius: var(--radius-md);
         padding: 12px 16px;
         margin: 8px 0;
@@ -205,7 +194,7 @@ def inject_css():
     .user-message .user-label {
         font-size: 11px;
         font-weight: 600;
-        color: var(--accent-cyan);
+        color: var(--text-secondary);
         letter-spacing: 1px;
         text-transform: uppercase;
         margin-bottom: 6px;
@@ -225,7 +214,7 @@ def inject_css():
     .badge-green { background: rgba(16,185,129,0.15); color: #10b981; border: 1px solid rgba(16,185,129,0.3); }
     .badge-amber { background: rgba(245,158,11,0.15); color: #f59e0b; border: 1px solid rgba(245,158,11,0.3); }
     .badge-red   { background: rgba(239,68,68,0.15);  color: #ef4444; border: 1px solid rgba(239,68,68,0.3);  }
-    .badge-blue  { background: rgba(99,102,241,0.15); color: #6366f1; border: 1px solid rgba(99,102,241,0.3); }
+    .badge-blue  { background: rgba(59,130,246,0.15); color: #3b82f6; border: 1px solid rgba(59,130,246,0.3); }
 
     /* ===== STEP CARDS ===== */
     .step-card {
@@ -391,40 +380,41 @@ def inject_css():
         align-items: flex-start;
     }
     .info-box.philosophy {
-        background: rgba(99,102,241,0.08);
-        border: 1px solid rgba(99,102,241,0.2);
+        background: rgba(59, 130, 246, 0.05);
+        border: 1px solid rgba(59, 130, 246, 0.15);
         color: var(--text-secondary);
         font-style: italic;
     }
     .info-box.tip {
-        background: rgba(16,185,129,0.08);
-        border: 1px solid rgba(16,185,129,0.2);
+        background: rgba(16, 185, 129, 0.05);
+        border: 1px solid rgba(16, 185, 129, 0.15);
         color: var(--text-primary);
     }
     .info-box.warning {
-        background: rgba(245,158,11,0.08);
-        border: 1px solid rgba(245,158,11,0.2);
+        background: rgba(245, 158, 11, 0.05);
+        border: 1px solid rgba(245, 158, 11, 0.15);
         color: var(--text-primary);
     }
 
     /* ===== BUTTONS ===== */
     .stButton > button {
-        background: linear-gradient(135deg, #6366f1, #4f46e5) !important;
+        background: var(--accent-indigo) !important;
         color: white !important;
         border: none !important;
         border-radius: var(--radius-sm) !important;
         font-family: 'Inter', sans-serif !important;
         font-weight: 600 !important;
         font-size: 13px !important;
-        padding: 10px 20px !important;
-        transition: all 0.2s ease !important;
-        box-shadow: 0 4px 14px rgba(99,102,241,0.3) !important;
+        padding: 8px 16px !important;
+        transition: opacity 0.15s ease !important;
+        box-shadow: none !important;
     }
     .stButton > button:hover {
-        transform: translateY(-1px) !important;
-        box-shadow: 0 6px 20px rgba(99,102,241,0.4) !important;
+        opacity: 0.9 !important;
+        transform: none !important;
+        box-shadow: none !important;
     }
-    .stButton > button:active { transform: translateY(0) !important; }
+    .stButton > button:active { transform: none !important; }
 
     /* ===== TEXT INPUTS ===== */
     .stTextInput > div > div > input,
@@ -439,7 +429,7 @@ def inject_css():
     .stTextInput > div > div > input:focus,
     .stTextArea > div > div > textarea:focus {
         border-color: var(--accent-indigo) !important;
-        box-shadow: 0 0 0 2px rgba(99,102,241,0.2) !important;
+        box-shadow: none !important;
     }
 
     /* ===== SELECTBOX ===== */
