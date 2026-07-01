@@ -5,7 +5,7 @@ import os
 import shutil
 
 
-def run_python_code(code: str, timeout: int = 10) -> tuple:
+def run_python_code(code: str, stdin: str = "", timeout: int = 10) -> tuple:
     """Run Python code in a subprocess and return (stdout, stderr)."""
     with tempfile.NamedTemporaryFile(
         mode="w", suffix=".py", delete=False, encoding="utf-8"
@@ -16,6 +16,7 @@ def run_python_code(code: str, timeout: int = 10) -> tuple:
     try:
         result = subprocess.run(
             [sys.executable, fname],
+            input=stdin,
             capture_output=True,
             text=True,
             timeout=timeout,
@@ -32,7 +33,7 @@ def run_python_code(code: str, timeout: int = 10) -> tuple:
             pass
 
 
-def run_javascript_code(code: str, timeout: int = 10) -> tuple:
+def run_javascript_code(code: str, stdin: str = "", timeout: int = 10) -> tuple:
     """Run JavaScript with Node.js if available."""
     node_exe = shutil.which("node")
     if not node_exe:
@@ -50,6 +51,7 @@ def run_javascript_code(code: str, timeout: int = 10) -> tuple:
     try:
         result = subprocess.run(
             [node_exe, fname],
+            input=stdin,
             capture_output=True,
             text=True,
             timeout=timeout,
@@ -84,7 +86,7 @@ _COMPILER_HINTS = {
 }
 
 
-def run_code(code: str, language: str) -> tuple:
+def run_code(code: str, language: str, stdin: str = "") -> tuple:
     """
     Execute code for the given language.
     Returns (stdout, stderr) strings.
@@ -93,7 +95,7 @@ def run_code(code: str, language: str) -> tuple:
     runner = _RUNNERS.get(lang)
 
     if runner:
-        return runner(code)
+        return runner(code, stdin=stdin)
 
     hint = _COMPILER_HINTS.get(lang, f"Running {language} is not yet supported here.")
     return "", hint

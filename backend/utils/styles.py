@@ -67,7 +67,8 @@ html, body,
 }
 
 /* ── HIDE STREAMLIT CHROME ────────────────────────────────────────────────── */
-#MainMenu, footer,
+#MainMenu, footer, header,
+[data-testid="stHeader"],
 [data-testid="stToolbar"],
 [data-testid="stDecoration"],
 [data-testid="stSidebar"],
@@ -77,11 +78,18 @@ section[data-testid="stSidebarContent"] {
 }
 
 /* ── CONTENT CONTAINER ───────────────────────────────────────────────────── */
-.main .block-container {
-    padding: 0 !important;
+.main .block-container,
+[data-testid="stAppViewBlockContainer"] {
+    padding: 0rem !important;
+    padding-top: 0rem !important;
+    padding-bottom: 0rem !important;
     margin: 0 !important;
     max-width: 100% !important;
     width: 100% !important;
+}
+.stApp {
+    margin: 0 !important;
+    padding: 0 !important;
 }
 section.main {
     padding-top: 0 !important;
