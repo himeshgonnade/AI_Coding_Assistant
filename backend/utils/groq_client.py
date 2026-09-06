@@ -4,6 +4,8 @@ from dotenv import load_dotenv
 
 load_dotenv()
 
+DEFAULT_MODEL = os.getenv("GROQ_MODEL", "groq/compound")
+
 
 def get_groq_client():
     api_key = os.getenv("GROQ_API_KEY", "")
@@ -11,13 +13,13 @@ def get_groq_client():
         return None
     return Groq(api_key=api_key)
 
-def call_groq(system_prompt: str, user_message: str, model: str = "llama-3.3-70b-versatile") -> str:
+def call_groq(system_prompt: str, user_message: str, model: str = None) -> str:
     client = get_groq_client()
     if not client:
         return "⚠️ Please enter your Groq API key in the sidebar to activate AI features."
     try:
         response = client.chat.completions.create(
-            model=model,
+            model=model or DEFAULT_MODEL,
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_message},
@@ -29,7 +31,7 @@ def call_groq(system_prompt: str, user_message: str, model: str = "llama-3.3-70b
     except Exception as e:
         return f"❌ API Error: {str(e)}"
 
-def call_groq_stream(system_prompt: str, user_message: str, model: str = "llama-3.3-70b-versatile"):
+def call_groq_stream(system_prompt: str, user_message: str, model: str = None):
     """Returns a generator for streaming responses."""
     client = get_groq_client()
     if not client:
@@ -37,7 +39,7 @@ def call_groq_stream(system_prompt: str, user_message: str, model: str = "llama-
         return
     try:
         stream = client.chat.completions.create(
-            model=model,
+            model=model or DEFAULT_MODEL,
             messages=[
                 {"role": "system", "content": system_prompt},
                 {"role": "user", "content": user_message},
@@ -52,3 +54,4 @@ def call_groq_stream(system_prompt: str, user_message: str, model: str = "llama-
                 yield delta
     except Exception as e:
         yield f"❌ API Error: {str(e)}"
+
