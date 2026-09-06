@@ -4,7 +4,7 @@ import { Play } from 'lucide-react';
 import CodeEditor from './CodeEditor';
 import ChatPanel from './ChatPanel';
 
-const API = 'http://localhost:8000';
+const API = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:8000';
 
 interface ChatMessage {
   role: 'user' | 'assistant';
